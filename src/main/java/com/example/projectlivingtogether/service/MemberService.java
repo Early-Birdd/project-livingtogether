@@ -3,7 +3,6 @@ package com.example.projectlivingtogether.service;
 import com.example.projectlivingtogether.entity.Member;
 import com.example.projectlivingtogether.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -44,7 +43,7 @@ public class MemberService implements UserDetailsService {
             throw new UsernameNotFoundException(email);
         }
 
-        return User.builder()
+        return org.springframework.security.core.userdetails.User.builder()
                 .roles(member.getRole().toString())
                 .username(member.getEmail())
                 .password(member.getPassword())
