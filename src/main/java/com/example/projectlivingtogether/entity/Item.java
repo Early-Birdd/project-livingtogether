@@ -21,11 +21,13 @@ public class Item {
 
     @Column(nullable = false, name = "item_price")
     private int price;
+
     @Column(nullable = false)
     private int itemQuantity;
 
     @Column(nullable = false)
     private String itemName;
+
     @Lob
     @Column(nullable = false)
     private String itemDetail;
