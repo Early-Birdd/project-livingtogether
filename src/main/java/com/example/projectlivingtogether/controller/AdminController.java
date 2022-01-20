@@ -1,8 +1,8 @@
 package com.example.projectlivingtogether.controller;
 
-import com.example.projectlivingtogether.dto.MemberDto;
-import com.example.projectlivingtogether.entity.Member;
-import com.example.projectlivingtogether.service.MemberService;
+import com.example.projectlivingtogether.dto.AdminDto;
+import com.example.projectlivingtogether.entity.Admin;
+import com.example.projectlivingtogether.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,37 +16,37 @@ import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/members")
-public class MemberController {
+@RequestMapping("/admins")
+public class AdminController {
 
-    private final MemberService memberService;
+    private final AdminService adminService;
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/signup")
-    public String memberRegisterForm(Model model){
+    public String adminRegisterForm(Model model){
 
-        model.addAttribute("memberDto", new MemberDto());
+        model.addAttribute("adminDto", new AdminDto());
 
-        return "member/memberRegisterForm";
+        return "admin/adminRegisterForm";
     }
 
     @PostMapping("/signup")
-    public String newMember(@Valid MemberDto memberDto, BindingResult bindingResult, Model model){
+    public String newAdmin(@Valid AdminDto adminDto, BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()){
 
-            return "member/memberRegisterForm";
+            return "admin/adminRegisterForm";
         }
 
         try{
 
-            Member member = Member.createMember(memberDto, passwordEncoder);
-            memberService.saveMember(member);
+            Admin admin = Admin.createAdmin(adminDto, passwordEncoder);
+            adminService.saveAdmin(admin);
         }catch (IllegalStateException e){
 
             model.addAttribute("errorMessage", e.getMessage());
 
-            return "member/memberRegisterForm";
+            return "admin/adminRegisterForm";
         }
 
         return "redirect:/";

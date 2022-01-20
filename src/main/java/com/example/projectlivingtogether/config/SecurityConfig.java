@@ -1,5 +1,6 @@
 package com.example.projectlivingtogether.config;
 
+import com.example.projectlivingtogether.service.AdminService;
 import com.example.projectlivingtogether.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     MemberService memberService;
 
+    @Autowired
+    AdminService adminService;
+
     @Override
     public void configure(WebSecurity web) throws Exception {
 
@@ -31,17 +35,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
-                .mvcMatchers("/", "/members/**", "/item/**", "/images/**").permitAll()
+                .mvcMatchers("/", "/members/**", "/admins/**", "/all/**", "/item/**", "/images/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                     .formLogin()
-                        .loginPage("/members/login")
+                        .loginPage("/all/login")
                         .defaultSuccessUrl("/")
                         .usernameParameter("email")
-                        .failureUrl("/members/login/error")
+                        .failureUrl("/all/login/error")
                         .and()
                         .logout()
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/all/logout"))
                         .logoutSuccessUrl("/")
                 .and()
                     .exceptionHandling()
@@ -58,6 +62,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.userDetailsService(memberService)
+                .passwordEncoder(passwordEncoder());
+
+        auth.userDetailsService(adminService)
                 .passwordEncoder(passwordEncoder());
     }
 }
