@@ -19,7 +19,7 @@ public class Item {
     @Enumerated(EnumType.STRING)
     private ItemStatus itemStatus;
 
-    @Column(nullable = false, name = "item_price")
+    @Column(nullable = false)
     private int price;
 
     @Column(nullable = false)

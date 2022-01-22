@@ -26,8 +26,8 @@ public class MemberServiceTest {
 
         MemberDto memberDto = new MemberDto();
 
-        memberDto.setEmail("abc@test.com");
-        memberDto.setPassword("abc123");
+        memberDto.setEmail("member@test.com");
+        memberDto.setPassword("member1234@@");
         memberDto.setName("테스트인");
         memberDto.setAddress("여기는 대한민국");
 
@@ -35,7 +35,7 @@ public class MemberServiceTest {
     }
 
     @Test
-    @DisplayName("member 회원가입")
+    @DisplayName("고객 회원가입")
     public void saveMemberTest(){
 
         Member member = createMember();
@@ -49,16 +49,15 @@ public class MemberServiceTest {
     }
 
     @Test
-    @DisplayName("가입여부")
+    @DisplayName("고객 가입여부")
     public void validateMemberTest(){
 
         Member member1 = createMember();
         Member member2 = createMember();
-        Member member3 = createMember();
 
         memberService.saveMember(member1);
 
-        Assertions.assertThatThrownBy(() -> memberService.saveMember(member3))
+        Assertions.assertThatThrownBy(() -> memberService.saveMember(member2))
                 .isInstanceOf(IllegalStateException.class);
     }
 }

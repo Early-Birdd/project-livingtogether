@@ -1,8 +1,8 @@
 package com.example.projectlivingtogether.controller;
 
-import com.example.projectlivingtogether.dto.MemberDto;
-import com.example.projectlivingtogether.entity.Member;
-import com.example.projectlivingtogether.service.MemberService;
+import com.example.projectlivingtogether.dto.AdminDto;
+import com.example.projectlivingtogether.entity.Admin;
+import com.example.projectlivingtogether.service.AdminService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,16 +13,17 @@ import org.springframework.security.test.web.servlet.response.SecurityMockMvcRes
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.yml")
 @Transactional
 @AutoConfigureMockMvc
-public class MemberControllerTest {
+public class AdminControllerTest {
 
     @Autowired
-    private MemberService memberService;
+    private AdminService adminService;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -30,28 +31,28 @@ public class MemberControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    public Member createMember(String email, String password){
+    public Admin createAdmin(String email, String password){
 
-        MemberDto memberDto = new MemberDto();
+        AdminDto adminDto = new AdminDto();
 
-        memberDto.setEmail(email);
-        memberDto.setPassword(password);
-        memberDto.setName("한국인");
-        memberDto.setAddress("한국 어딘가");
+        adminDto.setEmail(email);
+        adminDto.setPassword(password);
+        adminDto.setName("한국인");
+        adminDto.setAddress("한국 어딘가");
 
-        Member member = Member.createMember(memberDto, passwordEncoder);
+        Admin admin = Admin.createAdmin(adminDto, passwordEncoder);
 
-        return memberService.saveMember(member);
+        return adminService.saveAdmin(admin);
     }
 
     @Test
-    @DisplayName("고객 로그인")
-    public void MemberLoginTest() throws Exception{
+    @DisplayName("관리자 로그인")
+    public void AdminLoginTest() throws Exception{
 
-        String email = "member@test.mail";
-        String password = "member1234@@";
+        String email = "admin@test.mail";
+        String password = "admin1234@@";
 
-        this.createMember(email, password);
+        this.createAdmin(email, password);
 
         mockMvc.perform(formLogin().userParameter("email")
                 .loginProcessingUrl("/all/login")
@@ -61,18 +62,18 @@ public class MemberControllerTest {
     }
 
     @Test
-    @DisplayName("고객 로그인 실패")
-    public void MemberLoginFailTest() throws Exception{
+    @DisplayName("관리자 로그인 실패")
+    public void AdminLoginFailTest() throws Exception{
 
-        String email = "member@test.mail";
-        String password = "member1234@@";
+        String email = "admin@test.mail";
+        String password = "admin1234@@";
 
-        this.createMember(email, password);
+        this.createAdmin(email, password);
 
         mockMvc.perform(formLogin().userParameter("email")
                 .loginProcessingUrl("/all/login")
                 .user(email)
-                .password("member12345@@"))
+                .password("admin12345@@"))
                 .andExpect(SecurityMockMvcResultMatchers.unauthenticated());
     }
 }

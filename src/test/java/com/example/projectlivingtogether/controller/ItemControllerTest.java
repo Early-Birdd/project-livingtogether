@@ -10,7 +10,6 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -22,7 +21,7 @@ public class ItemControllerTest {
     MockMvc mockMvc;
 
     @Test
-    @DisplayName("admin test")
+    @DisplayName("관리자 권한 통과")
     @WithMockUser(username = "admin", roles = "ADMIN")
     public void itemRegisterTest() throws Exception{
 
@@ -31,7 +30,7 @@ public class ItemControllerTest {
     }
 
     @Test
-    @DisplayName("not admin test")
+    @DisplayName("관리자 권한 통과 실패")
     @WithMockUser(username = "user", roles = "USER")
     public void itemRegisterTest2() throws Exception{
 

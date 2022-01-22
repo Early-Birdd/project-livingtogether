@@ -35,7 +35,7 @@ class ItemRepositoryTest {
     EntityManager entityManager;
 
     @Test
-    @DisplayName("상품 create")
+    @DisplayName("상품 생성")
     public void createItem(){
 
         Item item = new Item();
