@@ -25,5 +25,13 @@ spring:
   thymeleaf:
     cache: false
 
+  servlet:
+    multipart:
+      max-request-size: 100MB
+      max-file-size: 10MB
+
 server:
   port: 8000
+
+itemImageLocation: C:/livingtogether/item
+uploadPath: file:///C:/livingtogether/

@@ -54,7 +54,7 @@ class ItemRepositoryTest {
 
     public void createItemList(){
 
-        for(int i = 1; i <= 10; i++){
+        for(int i = 0; i < 10; i++){
 
             Item item = new Item();
 
@@ -69,7 +69,7 @@ class ItemRepositoryTest {
             Item createdItem = itemRepository.save(item);
         }
 
-        for(int i = 11; i <= 20; i++){
+        for(int i = 10; i < 20; i++){
 
             Item item = new Item();
 
@@ -129,7 +129,7 @@ class ItemRepositoryTest {
     public void findByItemNameOrItemDetailTest(){
 
         this.createItemList();
-        List<Item> itemList = itemRepository.findByItemNameOrItemDetail("find 테스트 상품20", "find 테스트 상세15");
+        List<Item> itemList = itemRepository.findByItemNameOrItemDetail("find 테스트 상품19", "find 테스트 상세15");
 
         for(Item item : itemList){
 

@@ -4,12 +4,12 @@ import com.example.projectlivingtogether.ItemStatus;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+
 
 @Data
 @Entity
 @Table(name = "item")
-public class Item {
+public class Item extends BaseEntity{
 
     @Id
     @Column(name = "item_id")
@@ -20,10 +20,10 @@ public class Item {
     private ItemStatus itemStatus;
 
     @Column(nullable = false)
-    private int price;
+    private Integer price;
 
     @Column(nullable = false)
-    private int itemQuantity;
+    private Integer itemQuantity;
 
     @Column(nullable = false)
     private String itemName;
@@ -31,7 +31,4 @@ public class Item {
     @Lob
     @Column(nullable = false)
     private String itemDetail;
-
-    private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
 }

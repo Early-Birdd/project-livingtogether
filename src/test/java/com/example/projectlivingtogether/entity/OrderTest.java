@@ -2,6 +2,8 @@ package com.example.projectlivingtogether.entity;
 
 import com.example.projectlivingtogether.ItemStatus;
 import com.example.projectlivingtogether.repository.ItemRepository;
+import com.example.projectlivingtogether.repository.MemberRepository;
+import com.example.projectlivingtogether.repository.OrderItemRepository;
 import com.example.projectlivingtogether.repository.OrderRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -27,6 +29,12 @@ public class OrderTest {
     @Autowired
     ItemRepository itemRepository;
 
+    @Autowired
+    MemberRepository memberRepository;
+
+    @Autowired
+    OrderItemRepository orderItemRepository;
+
     @PersistenceContext
     EntityManager entityManager;
 
@@ -51,7 +59,7 @@ public class OrderTest {
 
         Order order = new Order();
 
-        for(int i = 1; i <= 5; i++){
+        for(int i = 0; i < 5; i++){
 
             Item item = this.createItem();
             itemRepository.save(item);
@@ -73,5 +81,58 @@ public class OrderTest {
 
         Order savedOrder = orderRepository.findById(order.getId()).orElseThrow(EntityNotFoundException::new);
         Assertions.assertThat(savedOrder.getOrderItems().size()).isEqualTo(5);
+    }
+
+    public Order createOrder(){
+
+        Order order = new Order();
+
+        for(int i = 0; i < 5; i++){
+
+            Item item = this.createItem();
+            itemRepository.save(item);
+
+            OrderItem orderItem = new OrderItem();
+
+            orderItem.setOrder(order);
+            orderItem.setItem(item);
+            orderItem.setOrderPrice(30000);
+            orderItem.setOrderQuantity(30);
+            orderItem.setCreatedDate(LocalDateTime.now());
+            orderItem.setUpdatedDate(LocalDateTime.now());
+
+            order.getOrderItems().add(orderItem);
+        }
+
+        Member member = new Member();
+        memberRepository.save(member);
+
+        order.setMember(member);
+        orderRepository.save(order);
+
+        return order;
+    }
+
+    @Test
+    @DisplayName("고아 객체 제거")
+    public void orphanRemovalTest(){
+
+        Order order = this.createOrder();
+        order.getOrderItems().remove(2);
+
+        entityManager.flush();
+    }
+
+    @Test
+    @DisplayName("지연 로딩")
+    public void lazyLoadingTest(){
+
+        Order order = this.createOrder();
+        Long orderItemId = order.getOrderItems().get(2).getId();
+
+        entityManager.flush();
+        entityManager.clear();
+
+        OrderItem orderItem = orderItemRepository.findById(orderItemId).orElseThrow(EntityNotFoundException::new);
     }
 }
