@@ -1,6 +1,6 @@
 package com.example.projectlivingtogether.entity;
 
-import com.example.projectlivingtogether.ItemStatus;
+import com.example.projectlivingtogether.enumclass.ItemStatus;
 import com.example.projectlivingtogether.repository.ItemRepository;
 import com.example.projectlivingtogether.repository.MemberRepository;
 import com.example.projectlivingtogether.repository.OrderItemRepository;

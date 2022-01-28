@@ -1,6 +1,6 @@
 package com.example.projectlivingtogether.dto;
 
-import com.example.projectlivingtogether.ItemStatus;
+import com.example.projectlivingtogether.enumclass.ItemStatus;
 import com.example.projectlivingtogether.entity.Item;
 import lombok.Data;
 import org.modelmapper.ModelMapper;

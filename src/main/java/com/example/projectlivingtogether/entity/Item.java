@@ -1,6 +1,8 @@
 package com.example.projectlivingtogether.entity;
 
-import com.example.projectlivingtogether.ItemStatus;
+import com.example.projectlivingtogether.enumclass.ItemStatus;
+import com.example.projectlivingtogether.dto.ItemDto;
+import com.example.projectlivingtogether.exception.OutOfQuantityException;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -31,4 +33,25 @@ public class Item extends BaseEntity{
     @Lob
     @Column(nullable = false)
     private String itemDetail;
+
+    public void updateItem(ItemDto itemDto){
+
+        this.itemStatus = itemDto.getItemStatus();
+        this.price = itemDto.getPrice();
+        this.itemQuantity = itemDto.getItemQuantity();
+        this.itemName = itemDto.getItemName();
+        this.itemDetail = itemDto.getItemDetail();
+    }
+
+    public void removeQuantity(int itemQuantity){
+
+        int restQuantity = this.itemQuantity - itemQuantity;
+
+        if(restQuantity < 0){
+
+            throw new OutOfQuantityException("재고가 부족합니다. (현재 재고 수량 : " + this.itemQuantity + ")");
+        }
+
+        this.itemQuantity = restQuantity;
+    }
 }

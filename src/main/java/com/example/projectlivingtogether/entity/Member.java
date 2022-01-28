@@ -1,6 +1,6 @@
 package com.example.projectlivingtogether.entity;
 
-import com.example.projectlivingtogether.Role;
+import com.example.projectlivingtogether.enumclass.Role;
 import com.example.projectlivingtogether.dto.MemberDto;
 import lombok.Data;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,7 +30,6 @@ public class Member extends BaseEntity {
     public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
 
         Member member = new Member();
-
         member.setRole(Role.USER);
         member.setEmail(memberDto.getEmail());
         String password = passwordEncoder.encode(memberDto.getPassword());

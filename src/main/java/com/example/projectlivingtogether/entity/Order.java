@@ -1,6 +1,6 @@
 package com.example.projectlivingtogether.entity;
 
-import com.example.projectlivingtogether.OrderStatus;
+import com.example.projectlivingtogether.enumclass.OrderStatus;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -29,4 +29,38 @@ public class Order extends BaseEntity{
     private OrderStatus orderStatus;
 
     private LocalDateTime orderDate;
+
+    public void addOrderItem(OrderItem orderItem){
+
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public static Order createOrder(Member member, List<OrderItem> orderItemList){
+
+        Order order = new Order();
+        order.setMember(member);
+
+        for(OrderItem orderItem : orderItemList){
+
+            order.addOrderItem(orderItem);
+        }
+
+        order.setOrderStatus(OrderStatus.ORDER);
+        order.setOrderDate(LocalDateTime.now());
+
+        return order;
+    }
+
+    public int getTotalPrice(){
+
+        int totalPrice = 0;
+
+        for(OrderItem orderItem : orderItems){
+
+            totalPrice += orderItem.getTotalPrice();
+        }
+
+        return totalPrice;
+    }
 }

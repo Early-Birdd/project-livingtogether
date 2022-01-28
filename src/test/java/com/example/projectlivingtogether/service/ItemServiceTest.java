@@ -1,6 +1,6 @@
 package com.example.projectlivingtogether.service;
 
-import com.example.projectlivingtogether.ItemStatus;
+import com.example.projectlivingtogether.enumclass.ItemStatus;
 import com.example.projectlivingtogether.dto.ItemDto;
 import com.example.projectlivingtogether.entity.Item;
 import com.example.projectlivingtogether.entity.ItemImage;

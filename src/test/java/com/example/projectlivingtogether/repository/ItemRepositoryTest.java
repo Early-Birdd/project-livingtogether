@@ -1,12 +1,11 @@
 package com.example.projectlivingtogether.repository;
 
-import com.example.projectlivingtogether.ItemStatus;
+import com.example.projectlivingtogether.enumclass.ItemStatus;
 import com.example.projectlivingtogether.entity.Item;
 import com.example.projectlivingtogether.entity.QItem;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.time.LocalDateTime;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:application-test.yml")
