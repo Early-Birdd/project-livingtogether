@@ -25,7 +25,6 @@ public class AdminServiceTest {
     public Admin createAdmin(){
 
         AdminDto adminDto = new AdminDto();
-
         adminDto.setEmail("admin@test.com");
         adminDto.setPassword("admin1234@@");
         adminDto.setName("테스트 관리자");

@@ -25,7 +25,6 @@ public class MemberServiceTest {
     public Member createMember(){
 
         MemberDto memberDto = new MemberDto();
-
         memberDto.setEmail("member@test.com");
         memberDto.setPassword("member1234@@");
         memberDto.setName("테스트인");

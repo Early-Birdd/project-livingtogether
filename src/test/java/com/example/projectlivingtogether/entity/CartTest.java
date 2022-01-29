@@ -36,7 +36,6 @@ public class CartTest {
     public Member createMember(){
 
         MemberDto memberDto = new MemberDto();
-
         memberDto.setEmail("member@test.mail");
         memberDto.setPassword("member1234@@");
         memberDto.setName("한국인");

@@ -36,7 +36,6 @@ class ItemRepositoryTest {
     public void createItem(){
 
         Item item = new Item();
-
         item.setItemName("create 테스트 상품");
         item.setItemStatus(ItemStatus.SALE);
         item.setItemQuantity(500);
@@ -54,7 +53,6 @@ class ItemRepositoryTest {
         for(int i = 0; i < 10; i++){
 
             Item item = new Item();
-
             item.setItemName("find 테스트 상품" + i);
             item.setItemStatus(ItemStatus.SALE);
             item.setItemQuantity(500 + i);
@@ -69,7 +67,6 @@ class ItemRepositoryTest {
         for(int i = 10; i < 20; i++){
 
             Item item = new Item();
-
             item.setItemName("find 테스트 상품" + i);
             item.setItemStatus(ItemStatus.SOLD_OUT);
             item.setItemQuantity(500 + i);

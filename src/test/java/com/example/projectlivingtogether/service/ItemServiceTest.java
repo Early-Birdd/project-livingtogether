@@ -57,7 +57,6 @@ public class ItemServiceTest {
     public void saveItem() throws Exception{
 
         ItemDto itemDto = new ItemDto();
-
         itemDto.setItemStatus(ItemStatus.SALE);
         itemDto.setPrice(50000);
         itemDto.setItemQuantity(50);

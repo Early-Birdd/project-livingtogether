@@ -33,7 +33,6 @@ public class MemberControllerTest {
     public Member createMember(String email, String password){
 
         MemberDto memberDto = new MemberDto();
-
         memberDto.setEmail(email);
         memberDto.setPassword(password);
         memberDto.setName("한국인");

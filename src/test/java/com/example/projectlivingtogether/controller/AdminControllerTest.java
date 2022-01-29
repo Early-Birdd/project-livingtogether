@@ -34,7 +34,6 @@ public class AdminControllerTest {
     public Admin createAdmin(String email, String password){
 
         AdminDto adminDto = new AdminDto();
-
         adminDto.setEmail(email);
         adminDto.setPassword(password);
         adminDto.setName("한국인");

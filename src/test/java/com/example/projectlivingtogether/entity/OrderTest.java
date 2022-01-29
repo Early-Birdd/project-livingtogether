@@ -41,7 +41,6 @@ public class OrderTest {
     public Item createItem(){
 
         Item item = new Item();
-
         item.setItemName("create 테스트 상품");
         item.setItemStatus(ItemStatus.SALE);
         item.setItemQuantity(500);
@@ -65,11 +64,10 @@ public class OrderTest {
             itemRepository.save(item);
 
             OrderItem orderItem = new OrderItem();
-
             orderItem.setOrder(order);
             orderItem.setItem(item);
             orderItem.setOrderPrice(30000);
-            orderItem.setOrderQuantity(30);
+            orderItem.setCount(30);
             orderItem.setCreatedDate(LocalDateTime.now());
             orderItem.setUpdatedDate(LocalDateTime.now());
 
@@ -93,11 +91,10 @@ public class OrderTest {
             itemRepository.save(item);
 
             OrderItem orderItem = new OrderItem();
-
             orderItem.setOrder(order);
             orderItem.setItem(item);
             orderItem.setOrderPrice(30000);
-            orderItem.setOrderQuantity(30);
+            orderItem.setCount(30);
             orderItem.setCreatedDate(LocalDateTime.now());
             orderItem.setUpdatedDate(LocalDateTime.now());
 

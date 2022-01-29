@@ -95,14 +95,14 @@
             </select>
             <select th:field="*{searchItemStatus}" class="form-control" style="width:auto;">
                 <option value="">판매상태(전체)</option>
-                <option value="SELL">판매</option>
+                <option value="SALE">판매</option>
                 <option value="SOLD_OUT">품절</option>
             </select>
             <select th:field="*{searchBy}" class="form-control" style="width:auto;">
-                <option value="itemNm">상품명</option>
+                <option value="itemName">상품명</option>
                 <option value="createdBy">등록자</option>
             </select>
-            <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
+            <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력하십시오.">
             <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
         </div>
     </form>
