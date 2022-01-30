@@ -2,6 +2,7 @@ package com.example.projectlivingtogether.controller;
 
 import com.example.projectlivingtogether.dto.MemberDto;
 import com.example.projectlivingtogether.entity.Member;
+import com.example.projectlivingtogether.enumclass.Role;
 import com.example.projectlivingtogether.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,6 +34,7 @@ public class MemberControllerTest {
     public Member createMember(String email, String password){
 
         MemberDto memberDto = new MemberDto();
+        memberDto.setRole(Role.USER);
         memberDto.setEmail(email);
         memberDto.setPassword(password);
         memberDto.setName("한국인");
@@ -44,11 +46,11 @@ public class MemberControllerTest {
     }
 
     @Test
-    @DisplayName("고객 로그인")
-    public void MemberLoginTest() throws Exception{
+    @DisplayName("회원 로그인")
+    public void UserLoginTest() throws Exception{
 
-        String email = "member@test.mail";
-        String password = "member1234@@";
+        String email = "user@test.mail";
+        String password = "user1234@@";
 
         this.createMember(email, password);
 
@@ -60,7 +62,7 @@ public class MemberControllerTest {
     }
 
     @Test
-    @DisplayName("고객 로그인 실패")
+    @DisplayName("회원 로그인 실패")
     public void MemberLoginFailTest() throws Exception{
 
         String email = "member@test.mail";

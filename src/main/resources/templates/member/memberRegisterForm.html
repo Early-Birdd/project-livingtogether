@@ -48,6 +48,13 @@
             <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
         </div>
 
+        <div class="mb-3">
+            <label th:for="role" class="form-label">권한</label>
+            <input type="radio" name="role" value="USER" checked="checked"> user
+            <input type="radio" name="role" value="ADMIN"> admin
+            <p th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="fieldError">Incorrect data</p>
+        </div>
+
         <div style="text-align: center">
             <button type="submit" class="btn btn-primary" style="">Member Sign up</button>
         </div>

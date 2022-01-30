@@ -30,7 +30,7 @@ public class Member extends BaseEntity {
     public static Member createMember(MemberDto memberDto, PasswordEncoder passwordEncoder){
 
         Member member = new Member();
-        member.setRole(Role.USER);
+        member.setRole(memberDto.getRole());
         member.setEmail(memberDto.getEmail());
         String password = passwordEncoder.encode(memberDto.getPassword());
         member.setPassword(password);

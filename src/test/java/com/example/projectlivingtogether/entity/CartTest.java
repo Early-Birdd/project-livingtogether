@@ -1,6 +1,7 @@
 package com.example.projectlivingtogether.entity;
 
 import com.example.projectlivingtogether.dto.MemberDto;
+import com.example.projectlivingtogether.enumclass.Role;
 import com.example.projectlivingtogether.repository.CartRepository;
 import com.example.projectlivingtogether.repository.MemberRepository;
 import org.assertj.core.api.Assertions;
@@ -36,6 +37,7 @@ public class CartTest {
     public Member createMember(){
 
         MemberDto memberDto = new MemberDto();
+        memberDto.setRole(Role.USER);
         memberDto.setEmail("member@test.mail");
         memberDto.setPassword("member1234@@");
         memberDto.setName("한국인");

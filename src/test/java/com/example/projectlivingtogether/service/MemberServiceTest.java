@@ -2,6 +2,7 @@ package com.example.projectlivingtogether.service;
 
 import com.example.projectlivingtogether.dto.MemberDto;
 import com.example.projectlivingtogether.entity.Member;
+import com.example.projectlivingtogether.enumclass.Role;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ public class MemberServiceTest {
     public Member createMember(){
 
         MemberDto memberDto = new MemberDto();
+        memberDto.setRole(Role.USER);
         memberDto.setEmail("member@test.com");
         memberDto.setPassword("member1234@@");
         memberDto.setName("테스트인");

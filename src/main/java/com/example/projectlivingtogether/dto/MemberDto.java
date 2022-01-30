@@ -1,14 +1,20 @@
 package com.example.projectlivingtogether.dto;
 
+import com.example.projectlivingtogether.enumclass.Role;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 @Data
 public class MemberDto {
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @NotBlank(message = "이메일을 필수로 입력하십시오.")
     @Email(message = "이메일 형식으로 입력하십시오.")

@@ -1,6 +1,5 @@
 package com.example.projectlivingtogether.config;
 
-import com.example.projectlivingtogether.service.AdminService;
 import com.example.projectlivingtogether.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -21,9 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     MemberService memberService;
 
-    @Autowired
-    AdminService adminService;
-
     @Override
     public void configure(WebSecurity web) throws Exception {
 
@@ -35,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
-                .mvcMatchers("/", "/members/**", "/admins/**", "/all/**", "/item/**", "/images/**").permitAll()
+                .mvcMatchers("/", "/members/**", "/all/**", "/item/**", "/images/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                     .formLogin()
@@ -62,9 +58,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
         auth.userDetailsService(memberService)
-                .passwordEncoder(passwordEncoder());
-
-        auth.userDetailsService(adminService)
                 .passwordEncoder(passwordEncoder());
     }
 }

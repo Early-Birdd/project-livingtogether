@@ -4,6 +4,7 @@ import com.example.projectlivingtogether.dto.CartDetailDto;
 import com.example.projectlivingtogether.entity.CartItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -19,5 +20,5 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
             "and im.rpImage = 'Y' " +
             "order by ci.createdDate desc"
     )
-    List<CartDetailDto> findCartDetailDtoList(Long cartId);
+    List<CartDetailDto> findCartDetailDtoList(@Param("cartId") Long cartId);
 }
