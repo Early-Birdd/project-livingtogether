@@ -11,6 +11,15 @@
 > * 주문
 > * 장바구니
 
+# 기술 스택
+> * ### Java
+> * ### Spring Boot
+> * ### JPA
+> * ### MySQL
+> * ### Spring Security
+> * ### Thymeleaf
+
+
 # 권한별 회원가입
 ![권한별 회원가입-user](https://user-images.githubusercontent.com/83779496/152207831-1d5b80d2-3013-47af-84d4-6cfa01511e4a.JPG)
 ![권한별 회원가입-admin](https://user-images.githubusercontent.com/83779496/152207881-a12ded5a-6452-44ae-ab5b-c7d304dad824.JPG)
